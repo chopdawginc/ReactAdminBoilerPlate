@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+html,
+body,
+#root {
+   margin: 0%;
+   padding: 0%;
+   font-family: 'Manrope', sans-serif;
+}
+
+/* ScrollBar */
+::-webkit-scrollbar {
+   width: 22px;
+   border-radius: 14px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+   background: #ebebeb;
+   border-radius: 14px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+   background: #6653d3;
+   border-radius: 14px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+   background: #9080eb;
+}
+
+/* Horizontal Scroll  */
+#scroll__container {
+   width: 100%;
+   display: flex;
+   gap: 10px;
+   overflow-x: scroll;
+}
+#scroll__container::-webkit-scrollbar {
+   display: none;
+}
+
+/* Phone Number Input */
+.PhoneInput {
+   position: relative;
+   color: #767682;
+}
+
+.PhoneInput input {
+   height: 50px;
+   border-radius: 8px;
+   font-size: 18px;
+   font-weight: 600;
+   color: #121212;
+   border: 1px solid transparent;
+   outline: none;
+   padding: 0px 10px 0px 10px;
+   width: 100%;
+   font-family: 'Manrope', sans-serif;
+   background-color: #ebebeb;
+}
+
+.PhoneInputCountry {
+   /* position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   margin-left: 15px; */
+   background-color: #ebebeb;
+   padding: 0px 10px;
+   border-radius: 8px;
+}
