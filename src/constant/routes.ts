@@ -7,7 +7,6 @@ export const ROUTES = {
   DASHBOARD: "/",
   LIBRARY: "/library",
   MANAGE_USER: "/manage-user",
-  BLISS_TIPS: "/bliss-tips",
   LEGAL: "/legal",
   ADMIN_ACCOUNTS: "/admin-accounts",
 

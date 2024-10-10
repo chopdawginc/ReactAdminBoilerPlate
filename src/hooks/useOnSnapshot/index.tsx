@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-// Define the types for the props with generic type T
 interface UseOnSnapshotDataProps<T> {
-  onRequestService: (
-    params: any
-  ) => Promise<{ data: T; unsubscribe?: () => void }>;
+  onRequestService: (params: any) => Promise<{ data: T; unsubscribe?: () => void }>;
   onError?: (error: any) => void;
   onSuccess?: (data: T) => void;
 }
 
-// Define the types for the state with generic type T
 export interface UseOnSnapshotReturn<T> {
   isLoading: boolean;
   error: any | null;
@@ -19,7 +15,6 @@ export interface UseOnSnapshotReturn<T> {
   onRequest: (params?: any) => Promise<T>;
 }
 
-// Make the hook generic by accepting a type parameter T
 const useOnSnapshot = <T,>({
   onRequestService,
   onError,
@@ -67,7 +62,7 @@ const useOnSnapshot = <T,>({
     } catch (error) {
       setError(error);
       setLoading(false);
-      throw error; // Throw the error to allow for proper error handling in the calling component
+      throw error;
     }
   };
 
