@@ -1,6 +1,42 @@
+# Tools/Technologies used
+
+React + Vite + Typescript
+Material UI
+Firebase
+Tailwind CSS
+React Hook Form + Yup
+React Router DOM (latest version)
+Dayjs
+
+# Setup Guide
+
+1.⁠ ⁠Clone the Repository  
+ Clone the repository to your local machine.
+
+2.⁠ ⁠Install pnpm  
+ If you don't have pnpm installed, you can install it by running:
+⁠ npm install -g pnpm ⁠
+
+3.⁠ ⁠Install Dependencies  
+ Navigate to the root directory of the project:  
+ ⁠ cd your-project-directory ⁠  
+ Then, install all dependencies by running:  
+ ⁠ pnpm install ⁠
+
+4.⁠ ⁠Add Environment Variables  
+ Create a ⁠ .env ⁠ file in the root directory. Add all the necessary Firebase environment variables used in ⁠ src/libs/firebase ⁠. Ensure all required keys are present.
+
+5.⁠ ⁠Run the Project  
+ To start the project, run:  
+ ⁠ pnpm dev ⁠
+
+Your project should now be up and running!
+
+<======================================================================================================>
+
 1. Which specific flavor of react is being used, like, is it pure reactjs or vitejs or nextjs.
 
-In this particular boilerplate, Create React App (CRA) has been used. This setup provides a pure React.js environment for building the application.
+   In this particular boilerplate, VITE has been used. (React + TypeScript + Vite)
 
 2. How the folder structure is done, which folder is responsible for what.
 
@@ -8,9 +44,9 @@ In this particular boilerplate, Create React App (CRA) has been used. This setup
 
    2. components: Holds reusable UI components that can be used across different parts of the application. These could be elements like buttons, form fields, or any other small, self-contained parts of the UI.
 
-   3. constant: Stores constant values or configurations that remain the same throughout the application, such as API URLs, configuration settings,colors, and other static data.
+   3. constants: Stores constants values or configurations that remain the same throughout the application, such as API URLs, configuration settings,colors, and other static data.
 
-   4. context: Contains React Context files, used to manage and provide global state across the app (e.g., user authentication state, theme settings).
+   4. contexts: Contains React Context files, used to manage and provide global state across the app (e.g., user authentication state, theme settings).
 
    5. core: Contains core modules/files that are essential for the application’s functioning. (e.g., App, Routes)
 
@@ -18,7 +54,7 @@ In this particular boilerplate, Create React App (CRA) has been used. This setup
 
    7. hooks: Contains custom React hooks, which are reusable functions that encapsulate logic for specific functionalities (e.g., fetching data, modals etc).
 
-   8. layout: Manages layout components that control the structure of pages, such as headers, footers, sidebars, or wrappers for different sections of the app.
+   8. layouts: Manages layout components that control the structure of pages, such as headers, footers, sidebars, or wrappers for different sections of the app.
 
    9. libs/firebase: Contains Firebase-specific configuration and service files, such as Firebase initialization and authentication
 
@@ -42,46 +78,16 @@ In this particular boilerplate, Create React App (CRA) has been used. This setup
 
    Step-1: Create a file named .env in the root directory of the project (the same level as package.json).
 
-   Step-2: Add your environment variables in the .env file, and prefix each variable name with REACT*APP*.
+   Step-2: Add your environment variables in the .env file, and prefix each variable name with VITE\_.
 
    Example .env file:
-   REACT_APP_API_URL=https://your-api-url.com
-   REACT_APP_API_KEY=your-api-key
-   REACT_APP_ENV=production
+   VITE_API_URL=https://your-api-url.com
+   VITE_API_KEY=your-api-key
 
    Step-3: Access Environment Variables in Your Code
 
    Example:
-   const apiUrl = process.env.REACT_APP_API_URL;
-   const apiKey = process.env.REACT_APP_API_KEY;
+   const apiUrl = import.meta.env.VITE_API_URL;
+   const apiKey = import.meta.env.VITE_API_KEY;
    console.log("API URL:", apiUrl);
    console.log("API Key:", apiKey);
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!

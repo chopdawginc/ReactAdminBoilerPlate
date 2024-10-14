@@ -1,6 +1,5 @@
-import { Padding } from "@mui/icons-material";
+import { COLORS } from "@constants/colors";
 import { createTheme } from "@mui/material/styles";
-import { COLORS } from "constant";
 
 declare module "@mui/material/styles" {
   interface TypographyVariants {

@@ -1,3 +1,4 @@
+import { firestore } from "@libs/firebase/firebase";
 import {
   collection,
   onSnapshot,
@@ -8,7 +9,6 @@ import {
   doc,
   DocumentReference,
 } from "firebase/firestore";
-import { firestore } from "libs/firebase/@firebase";
 
 // Utility function to handle Firestore onSnapshot subscriptions
 export const subscribeToCollection = <T extends DocumentData>(
@@ -30,9 +30,7 @@ export const subscribeToCollection = <T extends DocumentData>(
       const unsubscribe = onSnapshot(
         collectionRef,
         (snapshot) => {
-          const data = snapshot.docs.map(
-            (doc) => ({ id: doc.id, ...doc.data() } as T)
-          );
+          const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as T));
           dataCallback(data);
           resolve({ data, unsubscribe });
         },
@@ -70,9 +68,7 @@ export const getDocumentById = <T extends DocumentData>(
             dataCallback(data);
             resolve({ data, unsubscribe });
           } else {
-            const error = new Error(
-              "Document does not exist"
-            ) as FirestoreError;
+            const error = new Error("Document does not exist") as FirestoreError;
             errorCallback(error);
             reject(error);
           }
@@ -90,9 +86,6 @@ export const getDocumentById = <T extends DocumentData>(
 };
 
 // Helper function to get a Firestore document reference
-export const getDocumentReference = (
-  collection: string,
-  id: string
-): DocumentReference => {
+export const getDocumentReference = (collection: string, id: string): DocumentReference => {
   return doc(firestore, collection, id);
 };

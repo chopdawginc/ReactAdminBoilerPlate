@@ -1,7 +1,6 @@
-import { auth } from "libs/firebase/@firebase";
-import { ROUTES } from "constant";
-import { useAuthContext } from "context/AuthContext";
 import React, { ComponentType } from "react";
+import { auth } from "@libs/firebase/firebase";
+import { useAuthContext } from "@contexts/AuthContext";
 import { Navigate, useLocation } from "react-router-dom";
 
 interface WithProtectionProps {

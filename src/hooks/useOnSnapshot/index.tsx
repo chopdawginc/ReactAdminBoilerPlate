@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 interface UseOnSnapshotDataProps<T> {
   onRequestService: (params: any) => Promise<{ data: T; unsubscribe?: () => void }>;

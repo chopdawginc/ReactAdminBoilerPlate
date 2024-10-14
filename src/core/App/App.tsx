@@ -1,38 +1,24 @@
-import React from "react";
-import theme from "styles/theme";
-import { Routes } from "core";
+import { app } from "@libs/index";
+import theme from "@styles/theme";
+import router from "../Routes/Routes";
 import { ThemeProvider } from "@emotion/react";
-import { SnackbarProvider } from "components";
-// import { AuthContextProvider } from "context/authContext";
-import { QueryClient, QueryClientProvider } from "react-query";
-// import { NotificationContextProvider } from "context/notificationContext";
-import "./../../styles/_main.css";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { NotificationContextProvider } from "context/NotificationContext";
-import { AuthContextProvider } from "context/AuthContext";
-import { DataProvider } from "context/DataContext";
+import { RouterProvider } from "react-router-dom";
+import SnackbarProvider from "@components/SnackbarProvider";
+import { AuthContextProvider } from "@contexts/AuthContext";
+import { NotificationContextProvider } from "@contexts/NotificationContext";
 
-type Props = {};
-
-const App = (props: Props) => {
-  const queryClient = new QueryClient();
+const App = () => {
+  const invokeFirebaseApp = app;
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
-          <AuthContextProvider>
-            <DataProvider>
-              <NotificationContextProvider>
-                <Routes />
-                <SnackbarProvider />
-              </NotificationContextProvider>
-            </DataProvider>
-          </AuthContextProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </LocalizationProvider>
+    <ThemeProvider theme={theme}>
+      <AuthContextProvider>
+        <NotificationContextProvider>
+          <RouterProvider router={router} />
+          <SnackbarProvider />
+        </NotificationContextProvider>
+      </AuthContextProvider>
+    </ThemeProvider>
   );
 };
 
