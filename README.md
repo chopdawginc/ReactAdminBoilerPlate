@@ -1,93 +1,46 @@
-# Tools/Technologies used
+# Getting Started with Create React App
 
-React + Vite + Typescript
-Material UI
-Firebase
-Tailwind CSS
-React Hook Form + Yup
-React Router DOM (latest version)
-Dayjs
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Setup Guide
+## Available Scripts
 
-1.⁠ ⁠Clone the Repository  
- Clone the repository to your local machine.
+In the project directory, you can run:
 
-2.⁠ ⁠Install pnpm  
- If you don't have pnpm installed, you can install it by running:
-⁠ npm install -g pnpm ⁠
+### `npm start`
 
-3.⁠ ⁠Install Dependencies  
- Navigate to the root directory of the project:  
- ⁠ cd your-project-directory ⁠  
- Then, install all dependencies by running:  
- ⁠ pnpm install ⁠
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-4.⁠ ⁠Add Environment Variables  
- Create a ⁠ .env ⁠ file in the root directory. Add all the necessary Firebase environment variables used in ⁠ src/libs/firebase ⁠. Ensure all required keys are present.
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-5.⁠ ⁠Run the Project  
- To start the project, run:  
- ⁠ pnpm dev ⁠
+### `npm test`
 
-Your project should now be up and running!
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-<======================================================================================================>
+### `npm run build`
 
-1. Which specific flavor of react is being used, like, is it pure reactjs or vitejs or nextjs.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-   In this particular boilerplate, VITE has been used. (React + TypeScript + Vite)
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-2. How the folder structure is done, which folder is responsible for what.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-   1. assets: Contains static assets like images, audio files, fonts, or other media files used in the project.
+### `npm run eject`
 
-   2. components: Holds reusable UI components that can be used across different parts of the application. These could be elements like buttons, form fields, or any other small, self-contained parts of the UI.
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-   3. constants: Stores constants values or configurations that remain the same throughout the application, such as API URLs, configuration settings,colors, and other static data.
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-   4. contexts: Contains React Context files, used to manage and provide global state across the app (e.g., user authentication state, theme settings).
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-   5. core: Contains core modules/files that are essential for the application’s functioning. (e.g., App, Routes)
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-   6. hocs (Higher-Order Components): Stores higher-order components, which are functions that take a component and return a new version of it.
+## Learn More
 
-   7. hooks: Contains custom React hooks, which are reusable functions that encapsulate logic for specific functionalities (e.g., fetching data, modals etc).
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-   8. layouts: Manages layout components that control the structure of pages, such as headers, footers, sidebars, or wrappers for different sections of the app.
-
-   9. libs/firebase: Contains Firebase-specific configuration and service files, such as Firebase initialization and authentication
-
-   10. models: Holds TypeScript or JavaScript model definitions, which define the structure of data objects used across the application, such as database schemas.
-
-   11. modules: Contain feature-specific modules or parts of the application organized by feature (e.g., user module, admin module), each with its own components.
-
-   12. screens: Contains the main screens or pages of the application, such as Home, Profile, or Settings.
-
-   13. services: Holds service files, which usually include functions for handling API requests or interacting with backend services like Firebase, authentication, or data processing.
-
-   14. styles: Contains stylesheets or styling files, often for global styles, theme settings, or CSS files specific to certain parts of the application.
-
-   15. types: Stores TypeScript type definitions or interfaces, which help ensure type safety across the application.
-
-   16. utils: Contains utility functions that are used across different parts of the app. These could be helper functions for formatting data, performing calculations, or handling specific tasks.
-
-   17. validations: Holds validation logic, such as form validations or input validations, ensuring user inputs meet specified requirements.
-
-3. How we can set environment variables ?
-
-   Step-1: Create a file named .env in the root directory of the project (the same level as package.json).
-
-   Step-2: Add your environment variables in the .env file, and prefix each variable name with VITE\_.
-
-   Example .env file:
-   VITE_API_URL=https://your-api-url.com
-   VITE_API_KEY=your-api-key
-
-   Step-3: Access Environment Variables in Your Code
-
-   Example:
-   const apiUrl = import.meta.env.VITE_API_URL;
-   const apiKey = import.meta.env.VITE_API_KEY;
-   console.log("API URL:", apiUrl);
-   console.log("API Key:", apiKey);
+To learn React, check out the [React documentation](https://reactjs.org/).

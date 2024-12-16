@@ -1,4 +1,3 @@
-import { firestore } from "@libs/firebase/firebase";
 import {
   collection,
   onSnapshot,
@@ -8,7 +7,8 @@ import {
   DocumentData,
   doc,
   DocumentReference,
-} from "firebase/firestore";
+} from 'firebase/firestore'
+import { firestore } from 'libs/firebase/@firebase'
 
 // Utility function to handle Firestore onSnapshot subscriptions
 export const subscribeToCollection = <T extends DocumentData>(
@@ -20,31 +20,33 @@ export const subscribeToCollection = <T extends DocumentData>(
 ): Promise<{ data: T[]; unsubscribe: () => void }> => {
   return new Promise((resolve, reject) => {
     try {
-      let collectionRef = collection(firestore, collectionPath) as Query<T>;
+      let collectionRef = collection(firestore, collectionPath) as Query<T>
 
       // Apply optional query if provided
       if (queryFn) {
-        collectionRef = queryFn(collectionRef);
+        collectionRef = queryFn(collectionRef)
       }
 
       const unsubscribe = onSnapshot(
         collectionRef,
         (snapshot) => {
-          const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as T));
-          dataCallback(data);
-          resolve({ data, unsubscribe });
+          const data = snapshot.docs.map(
+            (doc) => ({ id: doc.id, ...doc.data() } as T)
+          )
+          dataCallback(data)
+          resolve({ data, unsubscribe })
         },
         (error: FirestoreError) => {
-          errorCallback(error);
-          reject(error);
+          errorCallback(error)
+          reject(error)
         }
-      );
+      )
     } catch (error) {
-      errorCallback(error as FirestoreError);
-      reject(error);
+      errorCallback(error as FirestoreError)
+      reject(error)
     }
-  });
-};
+  })
+}
 
 export const getDocumentById = <T extends DocumentData>(
   firestore: Firestore,
@@ -55,7 +57,7 @@ export const getDocumentById = <T extends DocumentData>(
 ): Promise<{ data: T; unsubscribe: () => void }> => {
   return new Promise((resolve, reject) => {
     try {
-      const documentRef = doc(firestore, collectionPath, documentId);
+      const documentRef = doc(firestore, collectionPath, documentId)
 
       const unsubscribe = onSnapshot(
         documentRef,
@@ -64,28 +66,31 @@ export const getDocumentById = <T extends DocumentData>(
             const data = {
               id: docSnapshot.id,
               ...docSnapshot.data(),
-            } as unknown as T;
-            dataCallback(data);
-            resolve({ data, unsubscribe });
+            } as unknown as T
+            dataCallback(data)
+            resolve({ data, unsubscribe })
           } else {
-            const error = new Error("Document does not exist") as FirestoreError;
-            errorCallback(error);
-            reject(error);
+            const error = new Error('Document does not exist') as FirestoreError
+            errorCallback(error)
+            reject(error)
           }
         },
         (error: FirestoreError) => {
-          errorCallback(error);
-          reject(error);
+          errorCallback(error)
+          reject(error)
         }
-      );
+      )
     } catch (error) {
-      errorCallback(error as FirestoreError);
-      reject(error);
+      errorCallback(error as FirestoreError)
+      reject(error)
     }
-  });
-};
+  })
+}
 
 // Helper function to get a Firestore document reference
-export const getDocumentReference = (collection: string, id: string): DocumentReference => {
-  return doc(firestore, collection, id);
-};
+export const getDocumentReference = (
+  collection: string,
+  id: string
+): DocumentReference => {
+  return doc(firestore, collection, id)
+}

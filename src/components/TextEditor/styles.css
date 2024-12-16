@@ -1,0 +1,12 @@
+.quill {
+   background-color: #ebebeb;
+}
+.ql-container.ql-snow {
+   border: none;
+   height: 270px;
+}
+.ql-toolbar.ql-snow {
+   border: none;
+}
+.ql-toolbar.ql-snow .ql-formats {
+}
