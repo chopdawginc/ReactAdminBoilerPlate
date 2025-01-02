@@ -13,10 +13,14 @@
       "@hocs/*": ["src/hocs/*"],
       "@modules/*": ["src/modules/*"],
       "@layouts/*": ["src/layouts/*"],
-      "@models/*": ["src/models/*"],
+      "@models/*": ["src/collections/*"],
       "@styles/*": ["src/styles/*"],
       "@screens/*": ["src/screens/*"],
-      "@validations/*": ["src/validations/*"]
+      "@validations/*": ["src/validations/*"],
+      "@actions/*": ["src/actions/*"],
+      "@databaseServices/*": ["src/databaseServices/*"],
+      "@appServices/*": ["src/appServices/*"],
+      "@collections/*": ["src/collections/*"]
     },
 
     "target": "ES2020",
@@ -26,7 +30,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler", // use 'node' to auto-resolving index files
+    "moduleResolution": "node", // use 'bundler' to resolve index files
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",

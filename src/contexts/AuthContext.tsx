@@ -1,11 +1,11 @@
-import { Admin } from "@models/schema";
 import useOnSnapshot from "@hooks/useOnSnapshot";
-import { ProfileService } from "@services/Profile.Services";
+import { User as IUser } from "src/collections/dbSchema";
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
-import React, { useEffect, useState, createContext, useContext, ReactNode } from "react";
+import { useEffect, useState, createContext, useContext, ReactNode } from "react";
+import { AuthAction } from "@actions/authActions";
 
 interface AuthContextState {
-  user: Admin | null;
+  user: IUser | null;
   isLoading: boolean;
   userLoading: boolean;
 }
@@ -26,8 +26,8 @@ export const AuthContextProvider: React.FC<AuthContextProps> = ({ children }) =>
     data,
     isLoading: userLoading,
     setData,
-  } = useOnSnapshot<Admin>({
-    onRequestService: ProfileService.getUserById,
+  } = useOnSnapshot<IUser>({
+    onRequestService: AuthAction.getUserById,
   });
 
   useEffect(() => {

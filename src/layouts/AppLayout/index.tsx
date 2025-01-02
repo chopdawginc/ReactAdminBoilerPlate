@@ -1,9 +1,13 @@
-import React from "react";
+import * as React from "react";
 import Sidebar from "@layouts/Sidebar";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
-import { Box, Typography } from "@mui/material";
+import { Box, Radio, Typography } from "@mui/material";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import { useTheme } from "@contexts/ThemeContext";
 
 type Props = {
   children: React.ReactNode;
@@ -17,6 +21,8 @@ const AppLayout = (props: Props) => {
   const [isSideBarOpen, setSideBarOpen] = React.useState(false);
 
   const handleSideBarToggle = () => setSideBarOpen(!isSideBarOpen);
+
+  const { mode, toggleTheme, theme } = useTheme();
 
   return (
     <Box display="flex" position={"relative"}>
@@ -34,7 +40,7 @@ const AppLayout = (props: Props) => {
           <MenuIcon sx={{ width: "30px", height: "30px" }} />
         </IconButton>
       </Box>
-      <Box width={"100%"}>
+      <Box width={"100%"} sx={{ backgroundColor: theme.background }}>
         <Container maxWidth={false}>
           <Box
             px={4}
@@ -44,8 +50,19 @@ const AppLayout = (props: Props) => {
             boxSizing={"border-box"}
             mr={{ md: fullWidth ? 0 : 8 }}
           >
-            <Box height={"15%"}>
+            <Box height={"15%"} display={"flex"} justifyContent={"space-between"}>
               <Typography variant="h2">{title}</Typography>
+              <FormControl>
+                <RadioGroup
+                  aria-labelledby="demo-controlled-radio-buttons-group"
+                  name="controlled-radio-buttons-group"
+                  value={mode}
+                  onChange={toggleTheme}
+                >
+                  <FormControlLabel value="light" control={<Radio />} label="Light Mode" />
+                  <FormControlLabel value="dark" control={<Radio />} label="Dark Mode" />
+                </RadioGroup>
+              </FormControl>
             </Box>
             <Box height={"85%"}>{children}</Box>
           </Box>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface UseOnSnapshotDataProps<T> {
   onRequestService: (params: any) => Promise<{ data: T; unsubscribe?: () => void }>;
@@ -24,18 +24,6 @@ const useOnSnapshot = <T,>({
   const [error, setError] = useState<any | null>(null);
   const [data, setData] = useState<T | null>(null);
 
-  // Uncomment and use unsubscribe state if needed in the future
-  // const [unsubscribe, setUnsubscribe] = useState<(() => void) | null>(null);
-
-  // Uncomment if you want to handle cleanup for the unsubscribe function
-  // useEffect(() => {
-  //   return () => {
-  //     if (unsubscribe) {
-  //       unsubscribe();
-  //     }
-  //   };
-  // }, [unsubscribe]);
-
   const dataCallback = (data: T) => {
     setData(data);
     onSuccess && onSuccess(data);
@@ -56,8 +44,6 @@ const useOnSnapshot = <T,>({
         errorCallback,
       });
       setLoading(false);
-      // Uncomment if you want to use the unsubscribe functionality
-      // setUnsubscribe(response.unsubscribe);
       return response.data;
     } catch (error) {
       setError(error);

@@ -1,10 +1,12 @@
-import React from "react";
+import { COLORS } from "@constants/colors";
+import { loginSchema } from "@validations/index";
+import { AuthAction } from "@actions/authActions";
 import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
+import useService, { QueryType } from "@hooks/useService";
 import { Box, TextField, Grid, Button } from "@mui/material";
 import { useNotification } from "@contexts/NotificationContext";
-import { loginSchema } from "@validations/index";
 
 interface ILoginFormType {
   email: string;
@@ -17,19 +19,30 @@ export const LoginForm = (props: Props) => {
   const navigate = useNavigate();
   const { setAlert } = useNotification();
 
-  const { register, handleSubmit } = useForm<ILoginFormType>({
+  const login = useService({
+    type: QueryType.MUTATION,
+    onRequestService: AuthAction.login,
+    onError: (error) => setAlert({ show: true, message: error.message }),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm<ILoginFormType>({
     mode: "onChange",
     resolver: yupResolver(loginSchema),
   });
 
   const formSubmitHandler: SubmitHandler<ILoginFormType> = async (values) => {
-    console.log(values);
+    await login.onRequest(values);
+    navigate("/");
   };
 
   return (
-    <React.Fragment>
+    <Box className="flex justify-center items-center">
       <form>
-        <Grid mt={5} container spacing={2}>
+        <Grid mt={5} container spacing={2} width={"100%"} maxWidth={"500px"}>
           <Grid item xs={12}>
             <Box
               sx={{
@@ -49,17 +62,27 @@ export const LoginForm = (props: Props) => {
               variant="outlined"
               fullWidth
               placeholder="Email"
+              defaultValue={"admin@test.com"}
               sx={{
-                backgroundColor: "white",
-                borderRadius: "8px",
-                marginTop: "0px",
-                "& .MuiInputBase-input::placeholder": {
-                  color: "black",
-                  opacity: 1,
-                },
                 "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderRadius: "8px",
+                  borderRadius: "8px",
+                  "& .MuiOutlinedInput-input": {
+                    color: COLORS.BLACK.main,
+                  },
+                  "& .MuiOutlinedInput-input::placeholder": {
+                    color: "gray",
+                  },
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "1px solid black",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    border: `1px solid ${COLORS.PRIMARY.main}`,
+                  },
+                  "&.Mui-error .MuiOutlinedInput-notchedOutline": {
+                    border: `1px solid ${COLORS.ERROR.light}`,
                   },
                 },
               }}
@@ -85,13 +108,28 @@ export const LoginForm = (props: Props) => {
               variant="outlined"
               fullWidth
               placeholder="Password"
+              defaultValue={"Abcd@123"}
               sx={{
-                backgroundColor: "white",
-                borderRadius: "8px",
-
-                "& .MuiInputBase-input::placeholder": {
-                  color: "black",
-                  opacity: 1,
+                "& .MuiOutlinedInput-root": {
+                  borderRadius: "8px",
+                  "& .MuiOutlinedInput-input": {
+                    color: COLORS.BLACK.main,
+                  },
+                  "& .MuiOutlinedInput-input::placeholder": {
+                    color: "gray",
+                  },
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "1px solid black",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    border: `1px solid ${COLORS.PRIMARY.main}`,
+                  },
+                  "&.Mui-error .MuiOutlinedInput-notchedOutline": {
+                    border: `1px solid ${COLORS.ERROR.light}`,
+                  },
                 },
               }}
             />
@@ -104,33 +142,34 @@ export const LoginForm = (props: Props) => {
               variant="contained"
               color="primary"
               type="submit"
+              disabled={!isValid}
               sx={{
-                backgroundColor: "#BDE047",
+                backgroundColor: COLORS.PRIMARY.main,
                 borderRadius: "8px",
                 color: "black",
 
                 "&:hover": {
-                  backgroundColor: "#BDE047",
+                  backgroundColor: COLORS.PRIMARY.light,
                 },
               }}
             >
               Sign In
             </Button>
           </Grid>
-          <Grid item xs={12} textAlign="right" sx={{ color: "white" }}>
+          <Grid item xs={12} textAlign="right">
             <Link to={""} style={styles.link}>
               Forgot password?
             </Link>
           </Grid>
         </Grid>
       </form>
-    </React.Fragment>
+    </Box>
   );
 };
 
 const styles = {
   link: {
-    color: "white",
+    color: COLORS.BLACK.main,
     textDecoration: "underline",
     fontWeight: "600",
     fontSize: "23px",

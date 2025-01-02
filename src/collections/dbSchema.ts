@@ -1,6 +1,6 @@
 import { Timestamp } from "firebase/firestore";
 
-interface Admin {
+interface User {
   id: string;
   role: EAdminRole;
   email: string;
@@ -24,4 +24,4 @@ enum EAdminRole {
   Admin = "Admin",
 }
 
-export type { Admin };
+export type { User };
