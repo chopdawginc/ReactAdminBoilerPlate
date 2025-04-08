@@ -6,7 +6,6 @@ import ForgetPasswords from "screens/ForgetPasswords/ForgetPasswords";
 import EnterCode from "screens/EnterCode/EnterCode";
 import Library from "screens/Library/Library";
 import ManageUser from "screens/ManageUser/ManageUser";
-import BlissTips from "screens/BlissTips/BlissTips";
 import Legal from "screens/Legal/Legal";
 import AdminAccount from "screens/AdminAccount/AdminAccount";
 import { routeWithProtection } from "utils/routeWithProtection";
@@ -30,7 +29,6 @@ const Routes = (props: Props) => {
         {/* <Route path={ROUTES.DASHBOARD} element={<Dashboard />} /> */}
         <Route path={ROUTES.LIBRARY} element={<Library />} />
         <Route path={ROUTES.MANAGE_USER} element={<ManageUser />} />
-        <Route path={ROUTES.BLISS_TIPS} element={<BlissTips />} />
         <Route path={ROUTES.LEGAL} element={<Legal />} />
         <Route path={ROUTES.ADMIN_ACCOUNTS} element={<AdminAccount />} />
       </Route>

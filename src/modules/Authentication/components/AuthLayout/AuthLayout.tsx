@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { Container } from "@mui/material";
-import loginbgImage from "../../../../blisstrax_assets/loginBg.png";
+import logo512 from "assets/logo512.png";
 
 type Props = {
   children: React.ReactNode;
@@ -28,7 +28,7 @@ export const AuthLayout = (props: Props) => {
       >
         <Box
           component="img"
-          src="assets/icons/blisstrax.png"
+          src={logo512}
           alt="logo"
           sx={{
             position: "absolute",
