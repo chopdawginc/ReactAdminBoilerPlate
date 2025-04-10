@@ -1,23 +1,13 @@
-import { collection, DocumentData, query, where } from 'firebase/firestore'
-import {
-  useFirestorePagination,
-  UseFirestorePaginationReturn,
-} from 'hooks/useFirestorePagination'
-import useOnSnapshot, { UseOnSnapshotReturn } from 'hooks/useOnSnapshot'
 import useService, { ServiceState } from 'hooks/useService'
 import { ErrorState, ParamsType, QueryType } from 'hooks/useService/types'
-import { firestore } from 'libs/firebase/@firebase'
 import { Admin, Provider, Song, User } from 'collections/schema'
 import React, { createContext, useState, useContext, ReactNode } from 'react'
 import { ClientService } from 'services/Client.Services'
-import { LibraryService } from 'services/Library.Services'
 import { UsersData } from 'types'
 
 interface DataContextType {
   getUsers: ServiceState<User[]>
   getAdmins: ServiceState<Admin[]>
-  getSongs: UseFirestorePaginationReturn<Song>
-  getProviders: UseOnSnapshotReturn<Provider[]>
   getUsersData: ServiceState<UsersData>
   getUsersDataByDateRange: ServiceState<UsersData>
 }
@@ -43,17 +33,6 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
     useCache: true,
   })
 
-  // Fetch Songs
-  const getSongs = useFirestorePagination<Song>({
-    query: LibraryService.getAllSongsQuery,
-    pageSize: 20,
-  })
-
-  // Get Providers
-  const getProviders = useOnSnapshot<Provider[]>({
-    onRequestService: LibraryService.getProviders,
-  })
-
   // Dashboard data
   const getUsersData = useService<UsersData>({
     type: QueryType.MUTATION,
@@ -71,8 +50,6 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
       value={{
         getUsers,
         getAdmins,
-        getSongs,
-        getProviders,
         getUsersData,
         getUsersDataByDateRange,
       }}

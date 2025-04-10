@@ -1,12 +1,10 @@
 import React from 'react'
-import { DashboardContainer } from 'modules'
+import { DashboardContainer } from 'features'
 
 type Props = {}
 
 const Dashboard = (props: Props) => {
-  return (
-    <DashboardContainer/>
-  )
+  return <DashboardContainer />
 }
 
 export default Dashboard

@@ -1,12 +1,10 @@
-import { ManageUserContainer } from 'modules/ManageUser'
+import { ManageUserContainer } from 'features'
 import React from 'react'
 
 type Props = {}
 
 const ManageUser = (props: Props) => {
-    return (
-        <ManageUserContainer />
-    )
+  return <ManageUserContainer />
 }
 
 export default ManageUser

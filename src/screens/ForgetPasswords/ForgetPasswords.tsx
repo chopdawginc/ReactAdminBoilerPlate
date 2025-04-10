@@ -1,10 +1,10 @@
-import React from "react";
-import ForgetPasswordsContainer from "modules/Authentication/containers/ForgetPasswordsContainer/ForgetPasswordsContainer";
+import React from 'react'
+import { ForgetPasswordsContainer } from 'features'
 
-type Props = {};
+type Props = {}
 
 const ForgetPasswords = (props: Props) => {
-  return <ForgetPasswordsContainer />;
-};
+  return <ForgetPasswordsContainer />
+}
 
-export default ForgetPasswords;
+export default ForgetPasswords

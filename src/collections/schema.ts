@@ -50,7 +50,6 @@ interface Admin {
   updatedAt: Timestamp
 }
 
-
 interface AppContent {
   id: string
 
@@ -119,4 +118,4 @@ interface UserStatus {
   date: Timestamp
 }
 
-export { User, WorkoutSession, AppContent, Admin, Song, Provider }
+export type { User, WorkoutSession, AppContent, Admin, Song, Provider }

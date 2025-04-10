@@ -1,10 +1,10 @@
-import React from 'react';
-import IdentifyUserContainer from 'modules/Authentication/containers/IdentifyUserContainer/IdentifyUserContainer';
+import React from 'react'
+import { IdentifyUserContainer } from 'features'
 
-type Props = {};
+type Props = {}
 
 const IdentifyUser = (props: Props) => {
-   return <IdentifyUserContainer />;
-};
+  return <IdentifyUserContainer />
+}
 
-export default IdentifyUser;
+export default IdentifyUser

@@ -1,10 +1,11 @@
-import SetPasswordsContainer from "modules/Authentication/containers/SetPasswordsContainer/SetPasswordsContainer";
-import React from "react";
+// import SetPasswordsContainer from 'features/Authentication/containers/'
+import { SetPasswordsContainer } from 'features'
+import React from 'react'
 
-type Props = {};
+type Props = {}
 
 const SetPassword = (props: Props) => {
-  return <SetPasswordsContainer />;
-};
+  return <SetPasswordsContainer />
+}
 
-export default SetPassword;
+export default SetPassword

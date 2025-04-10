@@ -1,10 +1,10 @@
-import React from "react";
-import EnterCodeContainer from "modules/Authentication/containers/EnterCodeContainer/EnterCodeContainer";
+import React from 'react'
+import { EnterCodeContainer } from 'features'
 
-type Props = {};
+type Props = {}
 
 const EnterCode = (props: Props) => {
-  return <EnterCodeContainer />;
-};
+  return <EnterCodeContainer />
+}
 
-export default EnterCode;
+export default EnterCode

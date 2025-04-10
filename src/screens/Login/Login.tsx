@@ -1,10 +1,10 @@
-import React from "react";
-import { LoginContainer } from "modules";
+import React from 'react'
+import { LoginContainer } from 'features'
 
-type Props = {};
+type Props = {}
 
 const Login = (props: Props) => {
-  return <LoginContainer />;
-};
+  return <LoginContainer />
+}
 
-export default Login;
+export default Login
