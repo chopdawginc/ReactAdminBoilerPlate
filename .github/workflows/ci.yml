@@ -7,7 +7,7 @@ on:
 
 jobs:
   security:
-    uses: chopdawginc/ci-security-perf/.github/workflows/security.yml@v1
+    uses: chopdawginc/ci-security-perf/.github/workflows/security.yml@v1.0.1
     with:
       platform: web
       firebase: true
@@ -21,7 +21,7 @@ jobs:
     # bundle-budget + Lighthouse are enabled once the app toolchain is modernized
     # (ESLint 9 flat config + Vite/Vitest). For now this runs the asset-size and
     # Firestore anti-pattern checks only.
-    uses: chopdawginc/ci-security-perf/.github/workflows/performance.yml@v1
+    uses: chopdawginc/ci-security-perf/.github/workflows/performance.yml@v1.0.1
     with:
       platform: web
 
