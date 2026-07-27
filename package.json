@@ -22,7 +22,7 @@
     "@types/node": "^22.14.0",
     "@types/react": "^18.3.20",
     "@types/react-dom": "^18.3.6",
-    "axios": "^1.8.4",
+    "axios": "^1.18.0",
     "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",
     "babel-plugin-named-asset-import": "^0.3.8",
