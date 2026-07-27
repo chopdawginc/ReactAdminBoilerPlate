@@ -9,8 +9,8 @@ import { requireAdmin } from './utils/requireAdmin'
 import { getAuth } from 'firebase-admin/auth'
 import { ERRORS } from './constants/errors'
 import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore'
-import { Admin } from './collections/schema'
-import { EAdminRole } from './collections/types'
+import { Admin } from './models/schema'
+import { EAdminRole } from './models/types'
 const cors = require('cors')({ origin: true })
 const accountSid = process.env.TWILIO_ACCOUNT_SID
 const authToken = process.env.TWILIO_AUTH_TOKEN
