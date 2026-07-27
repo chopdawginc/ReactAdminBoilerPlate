@@ -5,6 +5,7 @@ import {
   Request as FirebaseRequest,
 } from 'firebase-functions/v2/https'
 import { CustomError } from './utils/CustomError'
+import { requireAdmin } from './utils/requireAdmin'
 import { getAuth } from 'firebase-admin/auth'
 import { ERRORS } from './constants/errors'
 import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore'
@@ -63,6 +64,9 @@ interface JsonResponse<T = any> {
 export const get_user_by_email: HttpsFunction = onRequest(
   async (req: GetUserByEmailRequest, res) => {
     cors(req, res, async () => {
+      const caller = await requireAdmin(req, res)
+      if (!caller) return
+
       const { email } = req.body
 
       try {
@@ -102,6 +106,9 @@ export const get_user_by_email: HttpsFunction = onRequest(
 export const update_user_email: HttpsFunction = onRequest(
   async (req: UpdateUserEmailRequest, res) => {
     cors(req, res, async () => {
+      const caller = await requireAdmin(req, res)
+      if (!caller) return
+
       const { userId, newEmail } = req.body
 
       if (!userId || !newEmail) {
@@ -142,6 +149,9 @@ export const update_user_email: HttpsFunction = onRequest(
 export const update_user_password: HttpsFunction = onRequest(
   async (req: UpdateUserPasswordRequest, res) => {
     cors(req, res, async () => {
+      const caller = await requireAdmin(req, res)
+      if (!caller) return
+
       const { userId, newPassword } = req.body
 
       if (!userId || !newPassword) {
@@ -176,6 +186,9 @@ export const update_user_password: HttpsFunction = onRequest(
 
 export const add_new_admin: HttpsFunction = onRequest(async (req, res) => {
   cors(req, res, async () => {
+    const caller = await requireAdmin(req, res)
+    if (!caller) return
+
     const { fullName, email, accountType, phoneNumber }: AddAdminRequest =
       req.body
 
@@ -240,6 +253,9 @@ export const add_new_admin: HttpsFunction = onRequest(async (req, res) => {
 
 export const delete_admin: HttpsFunction = onRequest(async (req, res) => {
   cors(req, res, async () => {
+    const caller = await requireAdmin(req, res)
+    if (!caller) return
+
     const { uid }: { uid: string } = req.body
 
     if (!uid) {
@@ -275,6 +291,9 @@ export const delete_admin: HttpsFunction = onRequest(async (req, res) => {
 export const admin_set_password: HttpsFunction = onRequest(
   async (req: UpdateUserPasswordRequest, res) => {
     cors(req, res, async () => {
+      const caller = await requireAdmin(req, res)
+      if (!caller) return
+
       const { userId, newPassword } = req.body
 
       if (!userId || !newPassword) {
@@ -323,6 +342,10 @@ export const admin_set_password: HttpsFunction = onRequest(
 )
 
 // OTP
+// checks-waiver(S4): pre-authentication endpoint used during admin sign-in, before an ID
+// token exists. Abuse risk (SMS flooding) should be mitigated with App Check and/or per-IP
+// rate limiting before production use.
+// nosemgrep: onrequest-without-caller-verification
 export const send_OTP: HttpsFunction = onRequest(async (req, res) => {
   cors(req, res, async () => {
     const { phone }: { phone: string } = req.body

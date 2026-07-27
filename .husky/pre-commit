@@ -1,0 +1,17 @@
+# Shared pre-commit checks — see https://github.com/chopdawginc/ci-security-perf
+
+# S1 — staged secret scan (install: brew install gitleaks)
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks protect --staged --redact --no-banner || {
+    echo ""
+    echo "Commit blocked: gitleaks found a potential secret in your staged changes."
+    echo "Remove the secret (use .env + .env.example instead). False positive? See"
+    echo "https://github.com/chopdawginc/ci-security-perf#waivers"
+    exit 1
+  }
+else
+  echo "warning: gitleaks not installed — staged secret scan skipped (CI will still catch it)."
+  echo "         install with: brew install gitleaks"
+fi
+
+npx lint-staged

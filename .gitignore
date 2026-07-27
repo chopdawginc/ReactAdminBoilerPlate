@@ -25,3 +25,13 @@ dist-ssr
 
 pnpm-lock.yaml
 .env
+.env.*
+!.env.example
+
+# Secrets that must never be committed
+*.p8
+service-account*.json
+*-adminsdk-*.json
+functions/.env
+functions/.env.*
+!functions/.env.example

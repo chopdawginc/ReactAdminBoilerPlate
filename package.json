@@ -87,7 +87,12 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "node scripts/test.js",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "test:rules": "firebase emulators:exec --only firestore --project demo-rules-test \"node --test rules-tests/\"",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint"
   },
   "eslintConfig": {
     "extends": [
@@ -171,6 +176,8 @@
     "@mui/system": "^5.15.14",
     "@testing-library/dom": "^10.0.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
     "rollup": "^4.39.0",
     "vite": "^6.2.5"
   }

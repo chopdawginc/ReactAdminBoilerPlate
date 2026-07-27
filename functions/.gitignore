@@ -10,3 +10,10 @@ node_modules/
 node_modules
 
 .DS_Store
+
+# Secrets — never commit real env or service-account files
+.env
+.env.*
+!.env.example
+service-account*.json
+*-adminsdk-*.json

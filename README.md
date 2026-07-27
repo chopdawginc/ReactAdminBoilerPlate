@@ -46,3 +46,19 @@ Make sure to never commit your actual `.env` file to version control.
 You can learn more in the [Vite documentation](https://vitejs.dev/guide/).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## Commit checks (security & performance)
+
+This project ships with the org shared CI checks
+([chopdawginc/ci-security-perf](https://github.com/chopdawginc/ci-security-perf)) in
+`.github/workflows/ci.yml`, plus a husky pre-commit hook that scans staged changes for secrets and
+lints staged files. Install [gitleaks](https://github.com/gitleaks/gitleaks) for the local secret
+scan: `brew install gitleaks`.
+
+On every PR: secret scanning (gitleaks), Firebase rules lint + emulator tests
+(`firestore.rules`/`storage.rules` in `rules-tests/`), static analysis for unauthenticated
+endpoints and client-side writes to authorization fields, dependency audit, and size/performance
+budgets.
+
+Policy: **red checks do not merge.** Intentional exceptions are waived inline (Semgrep: `// nosemgrep: <rule-id> -- checks-waiver(<id>): <reason>`; gitleaks: `gitleaks:allow`) and approved by code owners in review.
