@@ -1,0 +1,29 @@
+{
+  "ignore": [
+    {
+      "id": "brace-expansion",
+      "reason": "Transitive google-gax filesystem cleanup chain; request data never reaches glob expansion. Latest google-gax still resolves this chain and has no fixed upstream release.",
+      "added": "2026-07-27"
+    },
+    {
+      "id": "minimatch",
+      "reason": "Same transitive google-gax filesystem cleanup chain; not reachable from HTTP request handling.",
+      "added": "2026-07-27"
+    },
+    {
+      "id": "glob",
+      "reason": "Same transitive google-gax filesystem cleanup chain; not reachable from HTTP request handling.",
+      "added": "2026-07-27"
+    },
+    {
+      "id": "rimraf",
+      "reason": "Same transitive google-gax filesystem cleanup chain; not reachable from HTTP request handling.",
+      "added": "2026-07-27"
+    },
+    {
+      "id": "google-gax",
+      "reason": "Latest published google-gax is still flagged through its cleanup-only rimraf chain; re-evaluate when upstream releases a fixed dependency tree.",
+      "added": "2026-07-27"
+    }
+  ]
+}

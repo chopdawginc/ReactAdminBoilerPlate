@@ -12,18 +12,36 @@ jobs:
       platform: web
       firebase: true
       functions-dir: functions
-      # S8 is non-blocking here: the leftover Create React App / webpack build tooling under
-      # `dependencies` produces high/critical advisories with no clean fix short of the
-      # CRA -> Vite dependency modernization (tracked follow-up). Everything else is enforced.
-      soft-dep-audit: true
 
   performance:
-    # bundle-budget + Lighthouse are enabled once the app toolchain is modernized
-    # (ESLint 9 flat config + Vite/Vitest). For now this runs the asset-size and
-    # Firestore anti-pattern checks only.
     uses: chopdawginc/ci-security-perf/.github/workflows/performance.yml@v1.0.1
     with:
       platform: web
+      build-command: npm run build
+      dist-dir: build
+      # Current authenticated admin baseline is ~2130 KB; fail on material growth.
+      bundle-budget-kb: 2250
+      lighthouse: true
+      node-version: "22"
+
+  quality:
+    name: App lint, test, and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Lint (advisory while template debt is cleared)
+        continue-on-error: true
+        run: npm run lint
+      - name: Typecheck (advisory while MUI Grid is migrated)
+        continue-on-error: true
+        run: npm run typecheck
+      - run: npm run test:run
+      - run: npm run build
 
   rules-test:
     name: Firestore rules tests (emulator)
@@ -48,5 +66,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install --prefix functions
+      - run: npm ci --prefix functions
       - run: npm run build --prefix functions

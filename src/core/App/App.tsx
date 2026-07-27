@@ -4,7 +4,7 @@ import { Routes } from "core";
 import { ThemeProvider } from "@emotion/react";
 import { SnackbarProvider } from "components";
 // import { AuthContextProvider } from "context/authContext";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import { NotificationContextProvider } from "context/notificationContext";
 import "./../../styles/_main.css";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -13,11 +13,9 @@ import { NotificationContextProvider } from "context/NotificationContext";
 import { AuthContextProvider } from "context/AuthContext";
 import { DataProvider } from "context/DataContext";
 
-type Props = {};
+const queryClient = new QueryClient();
 
-const App = (props: Props) => {
-  const queryClient = new QueryClient();
-
+const App = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <QueryClientProvider client={queryClient}>
