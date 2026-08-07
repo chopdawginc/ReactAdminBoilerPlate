@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from '@mui/material'
 import React, { useState, useEffect } from 'react'
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
+import ReactQuill from 'react-quill-new'
+import 'react-quill-new/dist/quill.snow.css'
 import CBox from 'components/CBox/CBox'
 import './styles.css'
 
@@ -25,7 +25,11 @@ const TextEditor: React.FC<TextEditorProps> = ({
   const [text, setText] = useState<string>('')
 
   useEffect(() => {
-    data && setText(data)
+    if (data !== undefined) {
+      // Synchronize editor state when content is loaded asynchronously.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setText(data)
+    }
   }, [data])
 
   const handleTextChange = (value: string) => {

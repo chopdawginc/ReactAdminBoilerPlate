@@ -1,0 +1,34 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.admin == true;
+    }
+
+    // Fields only the backend (Admin SDK / Cloud Functions) may set.
+    function touchesProtectedFields() {
+      return request.resource.data.diff(resource == null ? {} : resource.data)
+        .affectedKeys()
+        .hasAny(['role', 'isAdmin', 'subscription', 'entitlements', 'isVerified']);
+    }
+
+    // Example collection: user profiles. Owners manage their own doc;
+    // authorization fields stay server-side.
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create, update: if isOwner(uid) && !touchesProtectedFields();
+      allow delete: if isAdmin();
+    }
+
+    // Deny-by-default: anything not matched above is inaccessible.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "ignore": [
+    {
+      "id": "react-router",
+      "module": "react-router / react-router-dom",
+      "reason": "GHSA-qwww-vcr4-c8h2 only affects React Server Components framework mode. This admin is a client-only Vite SPA and does not use RSC actions. The published fix requires React Router 8.3, which requires React 19.2.7 and is outside this template's supported React 18 stack.",
+      "added": "2026-07-27"
+    }
+  ]
+}

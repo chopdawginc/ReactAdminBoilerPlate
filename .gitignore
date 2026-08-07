@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+build
 *.local
 
 # Editor directories and files
@@ -24,4 +25,20 @@ dist-ssr
 *.sw?
 
 pnpm-lock.yaml
+yarn.lock
 .env
+.env.*
+!.env.example
+
+# Secrets that must never be committed
+*.p8
+service-account*.json
+*-adminsdk-*.json
+functions/.env
+functions/.env.*
+!functions/.env.example
+
+# Firebase emulator logs
+firestore-debug.log
+firebase-debug.log
+ui-debug.log
