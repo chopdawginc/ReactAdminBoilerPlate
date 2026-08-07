@@ -61,4 +61,9 @@ On every PR: secret scanning (gitleaks), Firebase rules lint + emulator tests
 endpoints and client-side writes to authorization fields, dependency audit, and size/performance
 budgets.
 
+Run the rules tests locally with `npm run test:rules`. The script installs the `rules-tests/`
+dependencies — including `firebase-tools` as a pinned local dependency, so no global CLI install
+is required — and runs the Firestore emulator. You only need Node 20+ and Java 21+ (the emulator
+runs on the JVM), matching what CI uses.
+
 Policy: **red checks do not merge.** Intentional exceptions are waived inline (Semgrep: `// nosemgrep: <rule-id> -- checks-waiver(<id>): <reason>`; gitleaks: `gitleaks:allow`) and approved by code owners in review.

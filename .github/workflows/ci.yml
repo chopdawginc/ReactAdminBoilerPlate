@@ -55,8 +55,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install --prefix rules-tests
-      - run: npx --yes firebase-tools emulators:exec --only firestore --project demo-rules-test "node --test rules-tests/"
+      - run: npm run test:rules
 
   functions-build:
     name: Functions typecheck/build

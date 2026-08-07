@@ -1,10 +1,13 @@
 {
   "name": "rules-tests",
   "private": true,
-  "description": "Firestore security rules tests — run with: npx firebase-tools emulators:exec --only firestore --project demo-rules-test \"node --test rules-tests/\"",
+  "description": "Firestore security rules tests — run with `npm run test:rules` from the repo root",
   "type": "module",
   "dependencies": {
     "@firebase/rules-unit-testing": "^4.0.1",
     "firebase": "^11.0.0"
+  },
+  "devDependencies": {
+    "firebase-tools": "^15.26.0"
   }
 }

@@ -36,7 +36,7 @@
     "test": "vitest",
     "test:run": "vitest run --passWithNoTests",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
-    "test:rules": "firebase emulators:exec --only firestore --project demo-rules-test \"node --test rules-tests/\"",
+    "test:rules": "npm install --prefix rules-tests && rules-tests/node_modules/.bin/firebase emulators:exec --only firestore --project demo-rules-test \"cd rules-tests && node --test\"",
     "prepare": "husky"
   },
   "lint-staged": {

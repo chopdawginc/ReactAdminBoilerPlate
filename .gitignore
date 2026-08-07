@@ -37,3 +37,8 @@ service-account*.json
 functions/.env
 functions/.env.*
 !functions/.env.example
+
+# Firebase emulator logs
+firestore-debug.log
+firebase-debug.log
+ui-debug.log

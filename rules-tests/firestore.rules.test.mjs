@@ -1,5 +1,5 @@
 // Firestore security rules tests (deny-by-default contract).
-// Run locally:  npx firebase-tools emulators:exec --only firestore --project demo-rules-test "node --test rules-tests/"
+// Run locally:  npm run test:rules (from the repo root)
 import { readFileSync } from "node:fs";
 import test, { before, after } from "node:test";
 import {
