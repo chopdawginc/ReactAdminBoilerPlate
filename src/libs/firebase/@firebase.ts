@@ -27,3 +27,12 @@ export const storage = getStorage(app)
 export const functions = getFunctions(app)
 
 export const firebaseError = FirebaseError
+
+// HTTP functions in functions/src deploy to the default Cloud Functions
+// region; keep this in sync if a region is set there.
+const FUNCTIONS_REGION = 'us-central1'
+
+// URL of an HTTP Cloud Function (its export name in functions/src/index.ts)
+// in the Firebase project this app is configured for.
+export const functionUrl = (name: string) =>
+  `https://${FUNCTIONS_REGION}-${firebaseConfig.projectId}.cloudfunctions.net/${name}`

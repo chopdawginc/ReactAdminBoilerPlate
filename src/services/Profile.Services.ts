@@ -1,4 +1,4 @@
-import { firebaseError, firestore } from 'libs/firebase/@firebase'
+import { firebaseError, firestore, functionUrl } from 'libs/firebase/@firebase'
 import { COLLECTIONS, ERRORS } from 'constant'
 import { Admin } from 'collections/schema'
 import { getDocumentById, subscribeToCollection } from 'utils/firebaseUtils'
@@ -41,7 +41,7 @@ class Profile {
       try {
         const response: AxiosResponse<UpdatePasswordResponse> =
           await axios.post(
-            'https://update-user-password-rekmjjk74q-uc.a.run.app',
+            functionUrl('update_user_password'),
             {
               userId,
               newPassword,
@@ -67,7 +67,7 @@ class Profile {
     return new Promise(async (resolve, reject) => {
       try {
         const response: AxiosResponse<UpdateEmailResponse> = await axios.post(
-          'https://update-user-email-rekmjjk74q-uc.a.run.app',
+          functionUrl('update_user_email'),
           {
             userId,
             newEmail,
@@ -131,7 +131,7 @@ class Profile {
       try {
         const response: AxiosResponse<UpdatePasswordResponse> =
           await axios.post(
-            'https://admin-set-password-rekmjjk74q-uc.a.run.app',
+            functionUrl('admin_set_password'),
             {
               userId,
               newPassword,
@@ -152,7 +152,7 @@ class Profile {
     return new Promise(async (resolve, reject) => {
       try {
         const response: AxiosResponse<UpdatePasswordResponse> =
-          await axios.post('https://send-otp-rekmjjk74q-uc.a.run.app', {
+          await axios.post(functionUrl('send_OTP'), {
             phone,
           })
         resolve(response.data.data)
@@ -175,7 +175,7 @@ class Profile {
     return new Promise(async (resolve, reject) => {
       try {
         const response: AxiosResponse<UpdatePasswordResponse> =
-          await axios.post('https://send-otp-rekmjjk74q-uc.a.run.app', {
+          await axios.post(functionUrl('send_OTP'), {
             phone,
             otp,
           })
