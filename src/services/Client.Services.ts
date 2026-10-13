@@ -1,4 +1,4 @@
-import { firestore } from 'libs/firebase/@firebase'
+import { firestore, functionUrl } from 'libs/firebase/@firebase'
 import { COLLECTIONS, ERRORS } from 'constant'
 import { Admin, User } from 'collections/schema'
 import { getDocumentById, subscribeToCollection } from 'utils/firebaseUtils'
@@ -68,7 +68,7 @@ class Client {
     return new Promise(async (resolve, reject) => {
       try {
         const response: AxiosResponse<AddAdminResponse> = await axios.post(
-          'https://add-new-admin-rekmjjk74q-uc.a.run.app',
+          functionUrl('add_new_admin'),
           {
             accountType,
             email,
@@ -90,7 +90,7 @@ class Client {
     return new Promise(async (resolve, reject) => {
       try {
         const response: AxiosResponse<DeleteAdminResponse> = await axios.post(
-          'https://delete-admin-rekmjjk74q-uc.a.run.app',
+          functionUrl('delete_admin'),
           {
             uid,
           }

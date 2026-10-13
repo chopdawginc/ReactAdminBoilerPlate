@@ -1,4 +1,4 @@
-import { auth, firebaseError, firestore } from "libs/firebase/@firebase";
+import { auth, firebaseError, firestore, functionUrl } from "libs/firebase/@firebase";
 import { ERRORS } from "constant";
 import { signOut, signInWithEmailAndPassword } from "firebase/auth";
 
@@ -52,13 +52,11 @@ class Auth {
   getUserByEmail = async ({ email }: EmailValue) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const functionUrl = "https://get-user-by-email-rekmjjk74q-uc.a.run.app";
-
         const requestData = {
           email: email,
         };
 
-        const response = await axios.post(functionUrl, requestData);
+        const response = await axios.post(functionUrl("get_user_by_email"), requestData);
 
         resolve(response.data.data);
       } catch (error: any) {
